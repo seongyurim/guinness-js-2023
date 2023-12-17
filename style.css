@@ -1,0 +1,641 @@
+
+/* @font-face {
+    font-family: 'YoonGothicPro750';
+    src: url(./fonts/YoonGothicPro750.woff) format('woff'); 
+} */
+
+/* 태그 영역 *******************************************************************/
+
+html {
+    width: 100%;
+    font-size: 14px;
+    /* font-family: 'YoonGothicPro750'; */
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #292929;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    letter-spacing: -0.03rem;
+    -ms-overflow-style: none;
+}
+    
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav {
+    font-family: 'Josefin Sans', sans-serif;
+    z-index: 999;
+}
+
+section {
+    /* border: 2px solid magenta; */
+}
+
+footer {
+    position: relative;
+    background-color: #292929;
+    color: #fff;
+    height: 40vh;
+    text-align: center;
+}
+
+
+
+
+/* 내비게이션 영역 *************************************************************/
+
+.global_nav {
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 44px;
+    left: 0;
+    top: 0;
+}
+
+.local_nav {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    left: 0;
+    top: 45px;
+}
+
+.global_nav_links{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 5rem;
+    align-items: center;
+}
+
+.local_nav_links{
+    display: flex;
+    justify-content: right;
+    height: 100%;
+    margin: 0 5rem;
+    align-items: center;
+    /* border-bottom: 1px solid #fff; */
+}
+
+.local_nav_product_link {
+    font-family: 'Josefin Sans', sans-serif;
+    margin-right: auto;
+    font-size: 2rem;
+}
+
+.local_nav_link {
+    margin-left: 2em;
+}
+
+.local_nav_fixed > .local_nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-bottom: 1px solid #fff;
+    
+    -webkit-backdrop-filter: saturate(180%) blur(15px);
+	-moz-backdrop-filter: saturate(180%) blur(15px);
+	-o-backdrop-filter: saturate(180%) blur(15px);
+	backdrop-filter: saturate(180%) blur(15px);
+}
+
+.local_nav_fixed .local_nav_links {
+    border: none;
+}
+
+/* 섹션0 이외에서 로컬내비 색상 변경 - font */
+.local_nav_overSec0 {
+    color: #292929;
+    transition: all 0.5s ease;
+}
+
+/* 섹션0 이외에서 로컬내비 색상 변경 - border */
+.local_nav_fixed > .local_nav_overSec0 {
+    border-bottom: 1px solid #292929;
+    transition: all 0.5s ease;
+}
+
+.scrollToTop {
+    position: fixed;
+    width:70px;
+    height: 70px;
+    right: 2%;
+    bottom: 3%;
+    z-index: 999;
+    background: url(./image/scrollToTop_mono.png);
+    border: none;
+    outline: none;
+    opacity: 0;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.scrollToTop:hover {
+    background: url(./image/scrollToTop_color.png);
+}
+
+
+
+
+/* section_0 : 탑 비디오 영역 ******************************************************************/
+
+#section_0 {
+    position: relative;
+    overflow: hidden;
+}
+
+.sec0_video > video {
+    filter: brightness(70%);
+    width: 100vw;    
+    height: 100vh;
+    object-fit: cover;
+}
+
+.sec0_txt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: inherit;
+    color: #fff;
+    overflow: hidden;
+}
+
+.sec0_txt_title{
+    position: absolute;
+    left: 0;
+    top: 13%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15rem;
+    letter-spacing: -1.5rem;
+    word-spacing: -0.5rem;
+    font-weight: 400;
+    opacity: 0.8;
+
+    display: flex;
+    animation: titleMoving 40s infinite linear;
+    text-overflow: clip;
+}
+
+@keyframes titleMoving {
+    from {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.sec0_txt_title > div {
+    flex-shrink: 0;
+    margin-right: 3rem;
+}
+
+.sec0_txt_subtitle {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+}
+
+.sec0_txt_subtitle_left{
+    font-family: 'Josefin Sans', sans-serif;
+    position: absolute;
+    left: 0;
+    top: 40%;
+    margin: 0 5rem;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    opacity: 0;
+}
+
+.sec0_txt_subtitle_right{
+    position: absolute;
+    right: 0;
+    top: 40%;
+    margin: 0 5rem;
+    font-size: 1.6rem;
+    opacity: 0;
+    text-align: right;
+    font-weight: 300;
+}
+
+.sec0_txt_subtitle_left_transY {
+    top: 35%;
+    opacity: 1;
+    transition: all 1s ease 0.3s;
+}
+
+.sec0_txt_subtitle_right_transY {
+    top: 35%;
+    opacity: 1;
+    transition: all 1s ease 0.6s;
+}
+
+
+
+/* section_1 : 인트로 스크롤 영역 **************************************************************/
+
+.sticky_element {
+    display: none;
+    position: fixed;
+}
+
+.sec1_msg {
+    opacity: 1;
+    font-size: 8rem;
+    font-weight: 500;
+    letter-spacing: -0.6rem;
+    width: 100%;
+    height: 4em;
+    left: 0;
+    top: calc(50% - 105px);
+    text-align: center;
+}
+
+.sec1_msg.e > p > img {
+    width: 40vw;
+}
+
+.sec1_img {
+    opacity: 1;
+    position: absolute;
+    right: -30%;
+    top: 0;
+    /* height: 4em; */
+    z-index: -99;
+}
+
+.sec1_img > img {
+    width: 80vw;
+}
+
+#show_section1 .sticky_element {
+    display: block;
+    position: fixed;
+}
+
+
+
+/* section_2 : 기네스 가이드 제목 영역 *********************************************************/
+
+#section_2 {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sec2_container {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    /* text-align: center; */
+}
+
+.sec2_title_eng {
+    width: 100%;
+    font-size: 11rem;
+    font-family: 'Josefin Sans', sans-serif;
+    word-spacing: -0.5rem;
+    font-weight: 300;
+    letter-spacing: -1rem;
+    line-height: 95%;
+}
+
+.sec2_title_eng_p1,
+.sec2_title_eng_p2,
+.sec2_title_eng_p3 {
+    transition: all 1s;
+}
+
+.sec2_title_eng_p3 {
+    text-align: right;
+}
+
+/* .sec2_title_eng_rotate {
+    font-size: 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    word-spacing: 0;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 0;
+    animation: rotate_txt 6s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate_txt {
+    100% {
+        transform: rotate(360deg);
+    }
+} */
+
+
+.sec2_title_kor {
+    font-size: 1.5rem;
+    letter-spacing: -0.1rem;
+    opacity: 0.7;
+    text-align: center;
+}
+
+
+
+
+/* section_3 : 기네스 가이드 본문 영역 *********************************************************/
+
+#section_3 {
+    position: relative;
+}
+
+.sec3_container {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 73vw;
+    transform: translateX(-50%);
+    height: calc(inherit - 20%);
+    /* margin: 0 5rem; */
+}
+
+.guide_box {
+    position: relative;
+    background-color: #006837;
+    color: #fff;
+    border-radius: 30px;
+    width: 33vw;
+    height: 90vh;
+    margin: 2.5rem 1rem;
+}
+
+.guide_box.guide1,
+.guide_box.guide2,
+.guide_box.guide3,
+.guide_box.guide4 {
+    opacity: 0;
+    transform: translateY(30%);
+    transition: all 1s;
+}
+
+.guide_box.guide1.on,
+.guide_box.guide2.on,
+.guide_box.guide3.on,
+.guide_box.guide4.on {
+    opacity: 1;
+    transform: translateY(10%);
+    transition: all 1s;
+}
+
+.guide_box.guide2.on,
+.guide_box.guide4.on {
+    transition-delay: 0.3s;
+}
+
+.guide_info {
+    background: #242222;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 30px;
+    z-index: 99;
+}
+
+.guide_box:hover .guide_info {
+    opacity: 0.9;
+    transition: all 1s;
+}
+
+.guide_box:hover > .guide_img,
+.guide_box:hover > .guide_txt {
+    transform: scale(1.05);
+    transition: all 0.5s ease-out;
+}
+
+.guide_info_txt {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.guide_txt {
+    position: absolute;
+    left: 6%;
+    top: 6%;
+    z-index: 20;
+}
+
+.guide_img {
+    position: absolute;
+    right: 7%;
+    bottom: 5%;
+}
+
+.guide_img > img {
+    max-width: 20vw;
+}
+
+.guide_title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.3;
+}
+
+.guide_subtitle_eng {
+    font-family: 'Josefin Sans', sans-serif;
+    word-spacing: -0.5rem;
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: -0.25rem;
+    line-height: 95%;
+}
+
+.guide_subtitle_kor {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+
+
+/* section_4 : 오프라인 매장 안내 **************************************************************/
+
+#section_4 {
+    position: relative;
+}
+
+.sec4_map {
+    position: absolute;
+    right: 2%;
+    bottom: 20%;
+    opacity: 0;
+}
+
+
+.map_img > img {
+    width: 55vw;
+}
+
+.map_hover1 {
+    position: absolute;
+    left: 49%;
+    top: 58%;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.map_hover2 {
+    position: absolute;
+    right: 30%;
+    bottom: 27%;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.map_hover1_txtbox {
+    position: absolute;
+    right: 35%;
+    top: -375%;
+    background-color: #006837;
+    color: #fff;
+    border-radius: 20px;
+    width: 18vw;
+    height: 23vh;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.map_hover2_txtbox {
+    position: absolute;
+    left: -535%;
+    top: 100%;
+    background-color: #006837;
+    color: #fff;
+    border-radius: 20px;
+    width: 18vw;
+    height: 23vh;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.txt_branch {
+    position: absolute;
+    left: 6%;
+    top: 6%;
+    font-size: 1.5rem;
+}
+
+.txt_address {
+    position: absolute;
+    right: 6%;
+    bottom: 6%;
+    text-align: right;
+}
+
+.map_hover1:hover .map_hover1_txtbox,
+.map_hover2:hover .map_hover2_txtbox {
+
+    opacity: 1;
+    z-index: 9999;
+}
+
+.sec4_txt {
+    position: absolute;
+    left: 3vw;
+    top: 1vw;
+}
+
+.sec4_txt .info_title {
+    font-family: 'Josefin Sans', sans-serif;
+    word-spacing: -0.5rem;
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: -0.25rem;
+    line-height: 95%;
+    opacity: 0;
+}
+
+.sec4_txt .info_subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0;
+}
+
+.info_title.on {
+    opacity: 1;
+    transform: translateX(10%);
+    transition: all 1s;
+}
+
+.info_subtitle.on {
+    opacity: 1;
+    transform: translateX(10%);
+    transition: all 1s 0.2s;
+}
+
+.sec4_map.on {
+    opacity: 1;
+    transform: translateY(-10%);
+    transition: all 1s 0.4s;
+}
+
+
+
+/* 푸터 영역 ***********************************************************************************/
+
+.footer_container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.footer_logo > img {
+    width: 15vw;
+    margin-bottom: 2rem;
+}
+
+.footer_info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    width: 23vw;
+    margin-bottom: 1.5rem;
+    
+}
+
+.footer_copyright {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    letter-spacing: 0.15rem;
+}
