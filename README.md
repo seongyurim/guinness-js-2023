@@ -17,3 +17,61 @@
 
 ## 📍상세기능
 
+
+## 📍리팩토링
+<details>
+	<summary>getCurrentSection()</summary>
+
+  ```javascript
+  //// BEFORE
+  const getCurrentSectionOriginal = function() {
+      let segment = [
+          sectionSet[0].height,
+          sectionSet[0].height + sectionSet[1].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height + sectionSet[4].height
+      ];
+
+      let section = 0;
+
+      if (yOffset <= segment[0]) {
+          section = 0;
+      } else if ((yOffset > segment[0]) && (yOffset <= segment[1])) {
+          section = 1;
+      } else if ((yOffset > segment[1]) && (yOffset <= segment[2])) {
+          section = 2;
+      } else if ((yOffset > segment[2]) && (yOffset <= segment[3])) {
+          section = 3;
+      } else if ((yOffset > segment[3]) && (yOffset <= segment[4])) {
+          section = 4;
+      } else {
+          console.error("[ERROR] getCurrentSection()");
+      }
+      return section;
+  };
+
+  //// AFTER
+  const getCurrentSection = function() {
+    const segment = [];
+    let accumulatedHeight = 0;
+
+    // 각 섹션의 높이를 누적하여 segment 배열에 추가
+    for (let i = 0; i < sectionSet.length; i++) {
+      accumulatedHeight += sectionSet[i].height;
+      segment.push(accumulatedHeight);
+    }
+
+    // 현재 yOffset이 어느 섹션에 해당하는지 판별
+    for (let i = 0; i < segment.length; i++) {
+      if (yOffset <= segment[i]) {
+        return i;
+      }
+    }
+
+    // 발생할 일이 없지만~
+    console.error("[ERROR] getCurrentSection()");
+    return -1; // 유효하지 않은 값 반환
+  }
+```
+</details>
