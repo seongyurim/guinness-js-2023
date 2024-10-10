@@ -20,10 +20,11 @@
 
 ## 📍리팩토링
 <details>
-	<summary>getCurrentSection()</summary>
+	<p><summary><strong>1) getCurrentSection()</strong></summary></p>
 
+<p>1-1) BEFORE</p>
+	
   ```javascript
-  //// BEFORE
   const getCurrentSectionOriginal = function() {
       let segment = [
           sectionSet[0].height,
@@ -50,8 +51,11 @@
       }
       return section;
   };
+```
 
-  //// AFTER
+<p>1-2) AFTER</p>
+
+  ```javascript
   const getCurrentSection = function() {
     const segment = [];
     let accumulatedHeight = 0;
