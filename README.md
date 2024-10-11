@@ -17,23 +17,23 @@
 
 ## 📍상세기능
 ### 1) 전역변수
-- `yOffset`: scrollY값
+- `yOffset`: `window.scrollY`
 - `currentSection`: 현재 섹션
 - `sectionYOffset`: `yOffset`의 스크롤 값을 섹션별로 초기화
 - `sectionSet`: 섹션별 정보를 담은 배열
 
 ### 2) 함수
-- setLayout: 각 섹션의 높이를 지정합니다.
-- makeLocalNavFixed: 로컬 내비게이션을 특정 시점부터 고정합니다.
-- changeLocalNavColor: 로컬 내비게이션의 컬러를 변경합니다.
-- backToTop: 화살표 버튼을 클릭하면 최상단으로 이동합니다.
-- hideScrollBtn: 화살표 버튼이 탑 섹션에 있을 때에만 숨깁니다.
-- sec0_subtitle_transY: 탑 섹션의 부제목 트랜지션을 적용합니다.
-- getCurrentSection: 현재 스크롤된 섹션이 어디인지 섹션 넘버를 반환합니다.
-- setBodyID: body ID를 섹션에 맞게 변경합니다.
-- getPrevSecHeight: 이전 섹션의 높이를 구합니다.
-- calcValue: 스크롤 위치에 따라 애니메이션의 진행도를 계산하고 그에 맞는 중간값을 도출합니다.
-- playAnimation: 섹션별로 애니메이션을 실행합니다.
+- `setLayout`: 각 섹션의 높이를 지정합니다.
+- `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정합니다.
+- `changeLocalNavColor`: 로컬 내비게이션의 컬러를 변경합니다.
+- `backToTop`: 화살표 버튼을 클릭하면 최상단으로 이동합니다.
+- `hideScrollBtn`: 화살표 버튼이 탑 섹션에 있을 때에만 숨깁니다.
+- `sec0_subtitle_transY`: 탑 섹션의 부제목 트랜지션을 적용합니다.
+- `getCurrentSection`: 현재 스크롤된 섹션이 어디인지 섹션 넘버를 반환합니다.
+- `setBodyID`: body ID를 섹션에 맞게 변경합니다.
+- `getPrevSecHeight`: 이전 섹션의 높이를 구합니다.
+- `calcValue`: 스크롤 위치에 따라 애니메이션의 진행도를 계산하고 그에 맞는 중간값을 도출합니다.
+- `playAnimation`: 섹션별로 애니메이션을 실행합니다.
 
 ### 3) 이벤트리스너
 수정
