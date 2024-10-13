@@ -230,4 +230,4 @@ const calcValue = function (values) {
 - `setBodyID`
 
 #### 3-4) click
-- backToTop: 화살표 버튼을 클릭하면 페이지 최상단으로 이동합니다.
+- `backToTop`: 화살표 버튼을 클릭하면 페이지 최상단으로 이동합니다.
