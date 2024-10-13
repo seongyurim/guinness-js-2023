@@ -84,7 +84,12 @@ const calcValue = function (values) {
 <img width="1133" alt="GuinnessCalcValue" src="https://github.com/user-attachments/assets/cc901336-91cf-4477-ae67-bcbf85a7a6d5">
 
 #### 3-2) `playAnimation`: 섹션별로 애니메이션 실행
-
+- switch문을 사용하여 섹션별 애니메이션 블록을 구분합니다.
+- 스크롤 위치에 따라 애니메이션을 적용하여 사용자 경험을 향상시킵니다.
+- 사용자가 현재 위치한 지점의 스크롤 비율(`scrollRate`)을 받아 애니메이션의 실행 여부를 결정합니다.
+- 특정 스크롤 비율에 도달했을 때 각 DOM 요소의 CSS 값을 직접 변경하거나 선택자를 추가합니다.
+- 애니메이션은 제목, 부제목, 지도 이미지 등 다양한 요소에 적용됩니다.
+- `scrollRate` 및 `sectionSet.vals` 값에 따라 부드러운 애니메이션 효과로 화면이 자연스럽게 전환됩니다.
 
 #### 3-3) `getCurrentSection`: 현재 스크롤된 섹션의 넘버값 반환
 - 각 섹션의 높이를 누적산한 값을 하나씩 `segment` 배열에 추가합니다.
