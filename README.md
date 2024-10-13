@@ -16,14 +16,24 @@
 ## 📍주요기능
 
 ## 📍상세기능
-### 1) 전역변수
+### 1) 섹션 구성
+- section0: 탑 배너(비디오) 영역
+- section1: 기네스 소개 스크롤 애니메이션 영역
+- section2: 기네스 가이드 제목 영역
+- section3: 기네스 가이드 본문 영역
+- section4: 매장 안내 영역
+
+### 2) 전역변수
 - `yOffset`: `window.scrollY`
 - `currentSection`: 현재 섹션
 - `sectionYOffset`: `yOffset`의 스크롤 값을 섹션별로 초기화
 - `sectionSet`: 섹션별 정보를 담은 배열
 
-### 2) 함수
-- `setLayout`: 각 섹션의 높이를 지정합니다.
+### 3) 함수
+- `setLayout`: 각 섹션의 높이 지정
+	- 뷰포트 높이가 500px보다 작으면 500px로, 그렇지 않으면 `window.innerHeight`로 지정합니다.
+	- 지정한 높이 값에 `hMultiple`을 곱한 값을 sectionSet의 `height`에 저장합니다.
+	- 그 저장된 값을 각 섹션의 container DOM 요소의 높이 값으로도 지정합니다.
 - `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정합니다.
 - `changeLocalNavColor`: 로컬 내비게이션의 컬러를 변경합니다.
 - `backToTop`: 화살표 버튼을 클릭하면 최상단으로 이동합니다.
