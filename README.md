@@ -30,30 +30,54 @@
 - `sectionSet`: 섹션별 정보를 담은 배열
 
 ### 3) 함수
-#### 3-1) `setLayout`: 각 섹션의 높이 지정
+#### 3-1) 주요 함수
+##### 3-1-1) `calcValue`: 스크롤 위치에 따라 애니메이션의 진행도를 계산하고 그에 맞는 중간값 도출
+##### 3-1-2) `playAnimation`: 섹션별로 애니메이션 실행
+
+#### 3-2) 기타 함수
+##### 3-2-1) `setLayout`: 각 섹션의 높이 지정
 - 뷰포트 높이가 500px보다 작으면 500px로, 그렇지 않으면 `window.innerHeight`로 지정합니다.
-- 지정한 높이 값에 `hMultiple`을 곱한 값을 sectionSet의 `height`에 저장합니다.
+- 지정한 높이 값에 `hMultiple`을 곱한 값을 `sectionSet`의 `height`에 저장합니다.
 - 그 저장된 값을 각 섹션의 container DOM 요소의 높이 값으로도 지정합니다.
 
-#### 3-2) `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정
-- `yOffset`이 작은 수(44px)를 넘어가면 CSS 선택자를 추가합니다.
+##### 3-2-2) `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정
+- `yOffset`이 일정 높이(44px)를 넘어가면 CSS 선택자를 추가합니다.
 - 그렇지 않으면 선택자를 제거하여 속성을 되돌립니다.
 
-#### 3-3) `changeLocalNavColor`: 로컬 내비게이션 컬러를 변경
-- 기본 내비게이션은 첫번째 섹션에서 흰색 텍스트로 표시됩니다.
+##### 3-2-3) `changeLocalNavColor`: 로컬 내비게이션 컬러를 변경
+- 내비게이션은 첫번째 섹션에서 흰색 텍스트로 표시됩니다.
 - 하지만 다음 섹션부터는 검정색으로 표시되어야 가시성을 확보할 수 있습니다.
 - 이에 따라 `currentSection`이 0보다 큰 경우 CSS 선택자를 추가합니다.
 
-#### 3-4) `backToTop`: 화살표 버튼을 클릭하면 최상단으로 스크롤
+##### 3-2-4) `backToTop`: 화살표 버튼을 클릭하면 최상단으로 스크롤
+- 화살표 버튼을 클릭하면 `window.scrollTo` 메서드로 `top: 0`으로 이동합니다.
+
+##### 3-2-5) `hideScrollBtn`: 화살표 버튼이 탑 섹션에 있을 때에만 숨기기
+- `yOffset`이 0보다 크면 스크롤 버튼 DOM 요소의 `opacity` 값을 1로 변경합니다.
+
+##### 3-2-6) `sec0_subtitle_transY`: 탑 섹션의 부제목 트랜지션
+- 이벤트리스너를 통해 페이지가 로드되었을 때, 리사이징되었을 때 실행되도록 클래스를 추가합니다.
+- 트랜지션이 적용된 클래스가 적용됩니다.
+
+##### 3-2-7) `getCurrentSection`: 현재 스크롤된 섹션의 넘버값 반환
+- 각 섹션의 높이를 누적산한 값을 하나씩 `segment` 배열에 추가합니다.
+- `segment` 배열의 길이만큼 순회하는 반복문을 만듭니다.
+- `yOffset`이 `segment[i]`와 작거나 같다면 그 `i`값을 반환합니다.
+- 예외 경우는 발생할 일이 없지만 `console.error`처리하고 -1을 반환하여 대응합니다.
+
+##### 3-2-8) `setBodyID`: body ID를 섹션에 맞게 변경
+- html에 설정해두었던 `body` 태그의 `id="show_section0"`을 섹션에 맞게 변경합니다.
+- section1에서 기네스 소개 문구를 선택자로 지정하여 `sticky`로 처리하기 위한 방법입니다.
+- `#show_section1 .sticky_element`로 지정할 수 있습니다.
+- 실행시점: scroll, load, resize 이벤트
+
+##### 3-2-9) `getPrevSecHeight`: 이전 섹션의 높이 계산
+- `sectionYOffset = yOffset - getPrevSecHeight();`
+- 섹션별 스크롤값 초기화(`sectionYOffset`)를 계산하기 위해 필요한 함수입니다.
+- 현재 섹션을 제외한 이전 섹션들의 누적산된 높이를 제거함으로써 현재 섹션에서의 스크롤값만 알아낼 수 있습니다.
+- 실행시점: scroll, resize 이벤트
 
 
-- `hideScrollBtn`: 화살표 버튼이 탑 섹션에 있을 때에만 숨깁니다.
-- `sec0_subtitle_transY`: 탑 섹션의 부제목 트랜지션을 적용합니다.
-- `getCurrentSection`: 현재 스크롤된 섹션이 어디인지 섹션 넘버를 반환합니다.
-- `setBodyID`: body ID를 섹션에 맞게 변경합니다.
-- `getPrevSecHeight`: 이전 섹션의 높이를 구합니다.
-- `calcValue`: 스크롤 위치에 따라 애니메이션의 진행도를 계산하고 그에 맞는 중간값을 도출합니다.
-- `playAnimation`: 섹션별로 애니메이션을 실행합니다.
 
 ### 3) 이벤트리스너
 load, scroll
