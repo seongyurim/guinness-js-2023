@@ -30,13 +30,23 @@
 - `sectionSet`: 섹션별 정보를 담은 배열
 
 ### 3) 함수
-- `setLayout`: 각 섹션의 높이 지정
-	- 뷰포트 높이가 500px보다 작으면 500px로, 그렇지 않으면 `window.innerHeight`로 지정합니다.
-	- 지정한 높이 값에 `hMultiple`을 곱한 값을 sectionSet의 `height`에 저장합니다.
-	- 그 저장된 값을 각 섹션의 container DOM 요소의 높이 값으로도 지정합니다.
-- `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정합니다.
-- `changeLocalNavColor`: 로컬 내비게이션의 컬러를 변경합니다.
-- `backToTop`: 화살표 버튼을 클릭하면 최상단으로 이동합니다.
+#### 3-1) `setLayout`: 각 섹션의 높이 지정
+- 뷰포트 높이가 500px보다 작으면 500px로, 그렇지 않으면 `window.innerHeight`로 지정합니다.
+- 지정한 높이 값에 `hMultiple`을 곱한 값을 sectionSet의 `height`에 저장합니다.
+- 그 저장된 값을 각 섹션의 container DOM 요소의 높이 값으로도 지정합니다.
+
+#### 3-2) `makeLocalNavFixed`: 로컬 내비게이션을 특정 시점부터 고정
+- `yOffset`이 작은 수(44px)를 넘어가면 CSS 선택자를 추가합니다.
+- 그렇지 않으면 선택자를 제거하여 속성을 되돌립니다.
+
+#### 3-3) `changeLocalNavColor`: 로컬 내비게이션 컬러를 변경
+- 기본 내비게이션은 첫번째 섹션에서 흰색 텍스트로 표시됩니다.
+- 하지만 다음 섹션부터는 검정색으로 표시되어야 가시성을 확보할 수 있습니다.
+- 이에 따라 `currentSection`이 0보다 큰 경우 CSS 선택자를 추가합니다.
+
+#### 3-4) `backToTop`: 화살표 버튼을 클릭하면 최상단으로 스크롤
+
+
 - `hideScrollBtn`: 화살표 버튼이 탑 섹션에 있을 때에만 숨깁니다.
 - `sec0_subtitle_transY`: 탑 섹션의 부제목 트랜지션을 적용합니다.
 - `getCurrentSection`: 현재 스크롤된 섹션이 어디인지 섹션 넘버를 반환합니다.
