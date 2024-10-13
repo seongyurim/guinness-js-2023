@@ -92,6 +92,69 @@ const calcValue = function (values) {
 - `scrollRate` 및 `sectionSet.vals` 값에 따라 부드러운 애니메이션 효과로 화면이 자연스럽게 전환됩니다.
 
 #### 3-3) `getCurrentSection`: 현재 스크롤된 섹션의 넘버값 반환
+<details>
+	<p><summary><strong>전체코드 및 리팩토링</strong></summary></p>
+
+<p>반복되는 코드를 for 반복문을 통해 간소화하여 섹션 높이를 누적 계산하고, 현재 yOffset에 해당하는 섹션을 보다 효율적으로 판별합니다.</p>
+
+<p>▿BEFORE</p>
+	
+  ```javascript
+  const getCurrentSectionOriginal = function() {
+      let segment = [
+          sectionSet[0].height,
+          sectionSet[0].height + sectionSet[1].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height,
+          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height + sectionSet[4].height
+      ];
+
+      let section = 0;
+
+      if (yOffset <= segment[0]) {
+          section = 0;
+      } else if ((yOffset > segment[0]) && (yOffset <= segment[1])) {
+          section = 1;
+      } else if ((yOffset > segment[1]) && (yOffset <= segment[2])) {
+          section = 2;
+      } else if ((yOffset > segment[2]) && (yOffset <= segment[3])) {
+          section = 3;
+      } else if ((yOffset > segment[3]) && (yOffset <= segment[4])) {
+          section = 4;
+      } else {
+          console.error("[ERROR] getCurrentSection()");
+      }
+      return section;
+  };
+```
+
+<p>▿AFTER</p>
+
+  ```javascript
+  const getCurrentSection = function() {
+    const segment = [];
+    let accumulatedHeight = 0;
+
+    // 각 섹션의 높이를 누적하여 segment 배열에 추가
+    for (let i = 0; i < sectionSet.length; i++) {
+      accumulatedHeight += sectionSet[i].height;
+      segment.push(accumulatedHeight);
+    }
+
+    // 현재 yOffset이 어느 섹션에 해당하는지 판별
+    for (let i = 0; i < segment.length; i++) {
+      if (yOffset <= segment[i]) {
+        return i;
+      }
+    }
+
+    // 발생할 일이 없지만~
+    console.error("[ERROR] getCurrentSection()");
+    return -1; // 유효하지 않은 값 반환
+  }
+```
+</details>
+
 - 각 섹션의 높이를 누적산한 값을 하나씩 `segment` 배열에 추가합니다.
 - `segment` 배열의 길이만큼 순회하는 반복문을 만듭니다.
 - `yOffset`이 `segment[i]`와 작거나 같다면 그 `i`값을 반환합니다.
@@ -141,63 +204,3 @@ const calcValue = function (values) {
 load, scroll
 
 ## 📍리팩토링
-<details>
-	<p><summary><strong>1) getCurrentSection()</strong></summary></p>
-
-<p>1-1) BEFORE</p>
-	
-  ```javascript
-  const getCurrentSectionOriginal = function() {
-      let segment = [
-          sectionSet[0].height,
-          sectionSet[0].height + sectionSet[1].height,
-          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height,
-          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height,
-          sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height + sectionSet[4].height
-      ];
-
-      let section = 0;
-
-      if (yOffset <= segment[0]) {
-          section = 0;
-      } else if ((yOffset > segment[0]) && (yOffset <= segment[1])) {
-          section = 1;
-      } else if ((yOffset > segment[1]) && (yOffset <= segment[2])) {
-          section = 2;
-      } else if ((yOffset > segment[2]) && (yOffset <= segment[3])) {
-          section = 3;
-      } else if ((yOffset > segment[3]) && (yOffset <= segment[4])) {
-          section = 4;
-      } else {
-          console.error("[ERROR] getCurrentSection()");
-      }
-      return section;
-  };
-```
-
-<p>1-2) AFTER</p>
-
-  ```javascript
-  const getCurrentSection = function() {
-    const segment = [];
-    let accumulatedHeight = 0;
-
-    // 각 섹션의 높이를 누적하여 segment 배열에 추가
-    for (let i = 0; i < sectionSet.length; i++) {
-      accumulatedHeight += sectionSet[i].height;
-      segment.push(accumulatedHeight);
-    }
-
-    // 현재 yOffset이 어느 섹션에 해당하는지 판별
-    for (let i = 0; i < segment.length; i++) {
-      if (yOffset <= segment[i]) {
-        return i;
-      }
-    }
-
-    // 발생할 일이 없지만~
-    console.error("[ERROR] getCurrentSection()");
-    return -1; // 유효하지 않은 값 반환
-  }
-```
-</details>
