@@ -31,7 +31,10 @@
 
 ### 3) 주요함수
 #### 3-1) `calcValue`: 스크롤 위치에 따라 애니메이션의 진행도를 계산하고 그에 맞는 중간값 도출
-```
+<details>
+	<p><summary><strong>전체코드</strong></summary></p>
+
+```javascript
 const calcValue = function (values) {
   let result = 0; // 결과(CSS값)
   let ratio = 0; // 비율
@@ -71,6 +74,8 @@ const calcValue = function (values) {
   return result;
 };
 ```
+</details>
+
 - `sectionSet` 배열에 정의해둔 `vals` 정보 중 하나를 매개변수로 받습니다.
 - 그 정보는 `[1, 0, { start: 0.10, end: 0.16 }]` 형식으로 저장되어 있습니다.
 - 각 인덱스는 트랜지션의 시작값, 종료값, 시작되는 곳의 비율, 종료되는 곳의 비율입니다.
