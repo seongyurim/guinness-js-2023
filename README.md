@@ -14,6 +14,9 @@
 </div>
 
 ## 📍주요기능
+- **사용자가 위치한 섹션 정의**: 사용자가 위치한 지점이 어느 섹션에 해당하는지 동적으로 감지하여, 해당 섹션에 맞는 애니메이션을 실행합니다.
+- **스크롤 애니메이션**: 사용자가 스크롤할 때마다 텍스트가 하나씩 나타나고 사라지며, 배경 이미지는 천천히 스크롤되는 효과를 적용합니다.
+- **애니메이션 범위 할당**: 스크롤 위치에 따라 애니메이션 진행 비율을 계산하고, 이를 바탕으로 CSS 값의 중간값을 동적으로 도출하는 함수를 통해 다양한 애니메이션 효과를 구현합니다.
 
 ## 📍상세기능
 ### 1) 섹션 구성
@@ -198,9 +201,32 @@ const calcValue = function (values) {
 - 현재 섹션을 제외한 이전 섹션들의 누적산된 높이를 제거함으로써 현재 섹션에서의 스크롤값만 알아낼 수 있습니다.
 - 실행시점: scroll, resize 이벤트
 
-
-
 ### 3) 이벤트리스너
-load, scroll
+#### 3-1) scroll
+- `yOffset`: `scrollY` 값을 스크롤 이벤트가 일어날 때마다 저장합니다.
+- `sectionYOffset`: 전체 스크롤 위치가 아닌 섹션 내부에서의 스크롤 위치를 저장합니다.
+- `makeLocalNavFixed`: 로컬 내비게이션을 특정 위치부터 고정시킵니다.
+- `hideScrollBtn`: 화살표 버튼이 section0에서만 보이지 않게 숨깁니다.
+- `currentSection`: `getCurrentSection` 함수를 통해 현재 사용자가 위치한 섹션 넘버를 반환합니다.
+- `setBodyID`: `body`태그의 `id`를 동적으로 설정하여 특정 `id`에 CSS 선택자를 반영합니다.
+- `changeLocalNavColor`: section0을 벗어나면 내비게이션 색상을 변경합니다.
+- `playAnimation`: 애니메이션을 실행합니다.
 
-## 📍리팩토링
+#### 3-2) load
+- `setLayout`: 각 섹션의 높이값을 할당합니다.
+- `sec0_subtitle_transY`: section0 부제목의 트랜지션을 설정합니다.
+- `yOffset`
+- `makeLocalNavFixed`
+- `currentSection`
+- `setBodyID`
+
+#### 3-3) resize
+- `setLayout`
+- `currentSection`
+- `sectionYOffset`
+- `makeLocalNavFixed`
+- `sec0_subtitle_transY`
+- `setBodyID`
+
+#### 3-4) click
+- backToTop: 화살표 버튼을 클릭하면 페이지 최상단으로 이동합니다.
