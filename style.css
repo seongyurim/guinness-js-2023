@@ -101,12 +101,12 @@ footer {
 }
 
 .local_nav_fixed > .local_nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    border-bottom: 1px solid #fff;
-    
-    -webkit-backdrop-filter: saturate(180%) blur(15px);
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-bottom: 1px solid #fff;
+  
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
 	-moz-backdrop-filter: saturate(180%) blur(15px);
 	-o-backdrop-filter: saturate(180%) blur(15px);
 	backdrop-filter: saturate(180%) blur(15px);
@@ -184,13 +184,22 @@ footer {
     word-spacing: -0.5rem;
     font-weight: 400;
     opacity: 0.8;
-
-    display: flex;
-    animation: titleMoving 40s infinite linear;
-    text-overflow: clip;
+    overflow: hidden;
 }
 
-@keyframes titleMoving {
+.marquee_area {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee_text {
+  display: inline-block;
+  padding-right: 50px;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
     from {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);

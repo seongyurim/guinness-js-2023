@@ -24,5 +24,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 div, span, article, section, header, footer, aside, p, ul, li, fieldset, legend, label, a, nav, form {
 	box-sizing: border-box;
-	/* width: 200px; border: 10px;이면 컨텐츠 크기를 210px으로 처리하는 것 */
+	/* width: 200px; border: 10px;이면 컨텐츠 크기를 210px으로 처리 */
+}
+
+ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
 }
