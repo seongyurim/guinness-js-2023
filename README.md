@@ -79,9 +79,8 @@ const calcValue = function (values) {
 - `sectionSet` 배열에 정의해둔 `vals` 정보 중 하나를 매개변수로 받습니다.
 - 그 정보는 `[1, 0, { start: 0.10, end: 0.16 }]` 형식으로 저장되어 있습니다.
 - 각 인덱스는 트랜지션의 시작값, 종료값, 시작되는 곳의 비율, 종료되는 곳의 비율입니다.
-- `values.length === 2` (ex. [1, 0])
-- 
-- `values.length === 3` (ex. [1, 0, { start: 0.10, end: 0.16 }])
+<img width="1133" alt="GuinnessCalcValue" src="https://github.com/user-attachments/assets/cc901336-91cf-4477-ae67-bcbf85a7a6d5">
+
 
 #### 3-2) `playAnimation`: 섹션별로 애니메이션 실행
 
