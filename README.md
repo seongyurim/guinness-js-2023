@@ -202,8 +202,8 @@ const calcValue = function (values) {
 - 현재 섹션을 제외한 이전 섹션들의 누적산된 높이를 제거함으로써 현재 섹션에서의 스크롤값만 알아낼 수 있습니다.
 - 실행시점: scroll, resize 이벤트
 
-### 3) 이벤트리스너
-#### 3-1) scroll
+### 5) 이벤트리스너
+#### 5-1) scroll
 - `yOffset`: `scrollY` 값을 스크롤 이벤트가 일어날 때마다 저장합니다.
 - `sectionYOffset`: 전체 스크롤 위치가 아닌 섹션 내부에서의 스크롤 위치를 저장합니다.
 - `makeLocalNavFixed`: 로컬 내비게이션을 특정 위치부터 고정시킵니다.
@@ -213,7 +213,7 @@ const calcValue = function (values) {
 - `changeLocalNavColor`: section0을 벗어나면 내비게이션 색상을 변경합니다.
 - `playAnimation`: 애니메이션을 실행합니다.
 
-#### 3-2) load
+#### 5-2) load
 - `setLayout`: 각 섹션의 높이값을 할당합니다.
 - `sec0_subtitle_transY`: section0 부제목의 트랜지션을 설정합니다.
 - `yOffset`
@@ -221,7 +221,7 @@ const calcValue = function (values) {
 - `currentSection`
 - `setBodyID`
 
-#### 3-3) resize
+#### 5-3) resize
 - `setLayout`
 - `currentSection`
 - `sectionYOffset`
